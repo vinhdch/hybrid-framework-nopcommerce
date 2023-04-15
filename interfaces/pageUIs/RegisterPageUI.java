@@ -15,5 +15,6 @@ public class RegisterPageUI {
 	public static final String CONFIRM_PASSWORD_ERROW_MESSAGE = "//span[@id='ConfirmPassword-error']";
 	public static final String REGISTER_SUCCESS_MESSAGE = "//div[@class='result']";
 	public static final String EXIST_EMAIL_MESSAGE = "//div[contains(@class,'message-error')]//li";
+	public static final String LOGOUT_LINK = "//a[@class='ico-logout']";
 
 }

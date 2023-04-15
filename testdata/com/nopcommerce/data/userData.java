@@ -1,12 +1,12 @@
 package com.nopcommerce.data;
 
-public class userData {
+class userData {
 
-	public class register {
+	protected class register {
 
 	}
 
-	public class myAccount {
+	protected class myAccount {
 
 	}
 }

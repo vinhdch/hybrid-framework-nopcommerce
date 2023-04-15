@@ -19,7 +19,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	String emailAddress;
 
 	@BeforeClass
-	public void beforeClass() {
+	protected void beforeClass() {
 		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 
 		driver = new FirefoxDriver();
@@ -35,7 +35,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@Test
-	public void TC_01_Register_with_empty_data() {
+	protected void TC_01_Register_with_empty_data() {
 
 		waitForAllElementsClickable(driver, "//a[@class='ico-register']");
 		clickToElement(driver, "//a[@class='ico-register']");
@@ -51,7 +51,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@Test
-	public void TC_02_Register_with_invalid_email() {
+	protected void TC_02_Register_with_invalid_email() {
 		waitForAllElementsClickable(driver, "//a[@class='ico-register']");
 		clickToElement(driver, "//a[@class='ico-register']");
 
@@ -68,7 +68,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@Test
-	public void TC_03_Register_success() {
+	protected void TC_03_Register_success() {
 
 		waitForAllElementsClickable(driver, "//a[@class='ico-register']");
 		clickToElement(driver, "//a[@class='ico-register']");
@@ -90,7 +90,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@Test
-	public void TC_04_Register_with_exist_email() {
+	protected void TC_04_Register_with_exist_email() {
 
 		waitForAllElementsClickable(driver, "//a[@class='ico-register']");
 		clickToElement(driver, "//a[@class='ico-register']");
@@ -109,7 +109,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@Test
-	public void TC_05_Register_with_pw_less_than_6chars() {
+	protected void TC_05_Register_with_pw_less_than_6chars() {
 		waitForAllElementsClickable(driver, "//a[@class='ico-register']");
 		clickToElement(driver, "//a[@class='ico-register']");
 
@@ -127,7 +127,7 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@Test
-	public void TC_06_Register_with_invalid_confirm_pw() {
+	protected void TC_06_Register_with_invalid_confirm_pw() {
 
 		waitForAllElementsClickable(driver, "//a[@class='ico-register']");
 		clickToElement(driver, "//a[@class='ico-register']");
@@ -145,12 +145,12 @@ public class Level_1_Apply_BasePage_III extends BasePage {
 	}
 
 	@AfterClass
-	public void afterClass() {
+	protected void afterClass() {
 
 		driver.quit();
 	}
 
-	public int generateRandomEmail() {
+	protected int generateRandomEmail() {
 		Random rand = new Random();
 
 		return rand.nextInt(99999);
