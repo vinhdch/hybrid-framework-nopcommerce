@@ -14,39 +14,40 @@ public class BaseTest {
 
 	private WebDriver driverBaseTest;
 
-	// private String projectPath = System.getProperty("user.dir");
-
 	protected WebDriver getBrowserDriver(String browserName) {
 
 		System.out.println("Run on " + browserName);
+
 		if (browserName.equals("firefox")) {
-			// System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 
 			WebDriverManager.firefoxdriver().setup();
-
 			driverBaseTest = new FirefoxDriver();
+
 		} else if (browserName.equals("chrome")) {
-			// System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
 
 			WebDriverManager.chromedriver().setup();
-
 			driverBaseTest = new ChromeDriver();
+
 		} else if (browserName.equals("edge")) {
-			// System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
 
 			WebDriverManager.edgedriver().setup();
-
 			driverBaseTest = new EdgeDriver();
+
 		} else if (browserName.equals("headChrome")) {
 
 			WebDriverManager.chromedriver().setup();
-
 			ChromeOptions options = new ChromeOptions();
 
 			options.addArguments("--headless");
 			options.addArguments("window-size=1920x1080");
 
 			driverBaseTest = new ChromeDriver(options);
+
+		} else if (browserName.equals("edge")) {
+
+			WebDriverManager.edgedriver().setup();
+			driverBaseTest = new EdgeDriver();
+
 		} else {
 			throw new RuntimeException("BrowserName invalid");
 		}

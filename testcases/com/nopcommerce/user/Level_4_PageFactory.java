@@ -8,14 +8,14 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
+import pageFactory.HomepageObject;
+import pageFactory.LoginPageObject;
 
-public class Level_3_Multiple_browser extends BaseTest {
+public class Level_4_PageFactory extends BaseTest {
 
 	private WebDriver driverTestClass;
 
-	private HomePageObject homePage;
+	private HomepageObject homePage;
 
 	private LoginPageObject loginPage;
 
@@ -29,7 +29,7 @@ public class Level_3_Multiple_browser extends BaseTest {
 
 	@Test
 	protected void Login_01_with_empty_data() {
-		homePage = new HomePageObject(driverTestClass);
+		homePage = new HomepageObject(driverTestClass);
 
 		homePage.clickTologinLink();
 
