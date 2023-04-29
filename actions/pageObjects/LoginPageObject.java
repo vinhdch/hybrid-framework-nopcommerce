@@ -12,9 +12,10 @@ public class LoginPageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	public void clickToLoginButton() {
+	public HomePageObject clickToLoginButton() {
 		waitForAllElementsClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		return new PageGeneraterManager().getHomePageObject(driver);
 
 	}
 
