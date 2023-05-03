@@ -8,16 +8,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
+import pageObjects.nop.user.UserHomePageObject;
+import pageObjects.nop.user.UserLoginPageObject;
 
 public class Level_3_Multiple_browser extends BaseTest {
 
 	private WebDriver driverTestClass;
 
-	private HomePageObject homePage;
+	private UserHomePageObject homePage;
 
-	private LoginPageObject loginPage;
+	private UserLoginPageObject loginPage;
 
 	@Parameters("browser")
 	@BeforeClass
@@ -29,11 +29,11 @@ public class Level_3_Multiple_browser extends BaseTest {
 
 	@Test
 	protected void Login_01_with_empty_data() {
-		homePage = new HomePageObject(driverTestClass);
+		homePage = new UserHomePageObject(driverTestClass);
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driverTestClass);
+		loginPage = new UserLoginPageObject(driverTestClass);
 
 		loginPage.clickToLoginButton();
 

@@ -56,7 +56,7 @@ public class BaseTest {
 
 		driverBaseTest.manage().window().maximize();
 
-		driverBaseTest.get("https://demo.nopcommerce.com/");
+		driverBaseTest.get(GlobalConstants.PORTAL_PAGE_URL);
 
 		return driverBaseTest;
 	}

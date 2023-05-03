@@ -11,18 +11,18 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nop.user.UserHomePageObject;
+import pageObjects.nop.user.UserLoginPageObject;
+import pageObjects.nop.user.UserRegisterPageObject;
 
 public class Level_2_POM_Login extends BasePage {
 
 	private WebDriver driver;
 	private String projectPath = System.getProperty("user.dir");
 	private String firstName, lastName, existingEmail, password, invalidEmail, notFoundEmail;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 
 	@BeforeClass
 	protected void beforeClass() {
@@ -36,7 +36,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		driver.get("https://demo.nopcommerce.com/");
 
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 
 		firstName = "vinh";
 		lastName = "dong";
@@ -47,7 +47,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		// Precondition:
 		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 		registerPage.inputToFirstnameTextbox(firstName);
 		registerPage.inputToLastnameTextbox(lastName);
 		registerPage.inputToEmailTextbox(existingEmail);
@@ -62,7 +62,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.clickToLoginButton();
 
@@ -75,7 +75,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.inputToEmailTextbox(invalidEmail);
 
@@ -90,7 +90,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.inputToEmailTextbox(notFoundEmail);
 
@@ -105,7 +105,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.inputToEmailTextbox(existingEmail);
 
@@ -122,7 +122,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.inputToEmailTextbox(existingEmail);
 
@@ -139,7 +139,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		homePage.clickTologinLink();
 
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.inputToEmailTextbox(existingEmail);
 
@@ -147,7 +147,7 @@ public class Level_2_POM_Login extends BasePage {
 
 		loginPage.clickToLoginButton();
 
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 	}

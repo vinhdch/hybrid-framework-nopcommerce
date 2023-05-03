@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.nop.user;
 
 public class HomePageUI {
 

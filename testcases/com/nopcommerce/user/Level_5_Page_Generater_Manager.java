@@ -10,25 +10,25 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.PageGeneraterManager;
-import pageObjects.RegisterPageObject;
+import commons.PageGeneraterManager;
+import pageObjects.nop.user.UserHomePageObject;
+import pageObjects.nop.user.UserLoginPageObject;
+import pageObjects.nop.user.UserRegisterPageObject;
 
 public class Level_5_Page_Generater_Manager extends BaseTest {
 
 	private WebDriver driverTestClass;
 	private String firstName, lastName, existingEmail, password, invalidEmail, notFoundEmail;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 
 	@Parameters("browser")
 	@BeforeClass
 	protected void beforeClass(String browserName) {
 		driverTestClass = getBrowserDriver(browserName);
 
-		homePage = PageGeneraterManager.getHomePageObject(driverTestClass);
+		homePage = PageGeneraterManager.getUserHomePageObject(driverTestClass);
 
 		firstName = "vinh";
 		lastName = "dong";

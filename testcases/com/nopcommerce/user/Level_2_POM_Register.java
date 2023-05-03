@@ -11,16 +11,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nop.user.UserHomePageObject;
+import pageObjects.nop.user.UserRegisterPageObject;
 
 public class Level_2_POM_Register extends BasePage {
 
 	private WebDriver driver;
 	private String projectPath = System.getProperty("user.dir");
 	private String firstName, lastName, emailAddress, password;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
 
 	@BeforeClass
 	protected void beforeClass() {
@@ -32,8 +32,8 @@ public class Level_2_POM_Register extends BasePage {
 
 		driver.manage().window().maximize();
 
-		homePage = new HomePageObject(driver);
-		registerPage = new RegisterPageObject(driver);
+		homePage = new UserHomePageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 
 		driver.get("https://demo.nopcommerce.com/");
 
