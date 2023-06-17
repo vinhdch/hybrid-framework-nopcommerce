@@ -53,7 +53,7 @@ public class Level_7_Switch_Role extends BaseTest {
 		userRegisterPage.inputToPasswordTextbox(userPassword);
 		userRegisterPage.inputToConfirmPasswordTextbox(userPassword);
 		userRegisterPage.clickToRegisterButton();
-		// homePage = registerPage.clickToLogoutLink();
+		// userHomePage = userRegisterPage.clickToLogoutLink();
 	}
 
 	@Test

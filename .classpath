@@ -13,17 +13,17 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="libraries/selenium-server-standalone-3.141.59.jar"/>
 	<classpathentry kind="lib" path="libraries/testng-6.14.3.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/commons-codec-1.13.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/commons-collections4-4.3.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/commons-compress-1.20.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/commons-io-2.7.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/commons-lang3-3.11.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/gson-2.8.6.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/httpclient5-5.0.1.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/httpcore5-5.0.1.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/jarchivelib-1.0.0.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/jsoup-1.13.1.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/slf4j-api-1.7.30.jar"/>
-	<classpathentry kind="lib" path="librariesWebDriverManagement/webdrivermanager-4.2.0.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/commons-codec-1.13.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/commons-collections4-4.3.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/commons-compress-1.20.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/commons-io-2.7.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/commons-lang3-3.11.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/httpclient5-5.0.1.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/httpcore5-5.0.1.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/jarchivelib-1.0.0.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/slf4j-api-1.7.30.jar"/>
+	<classpathentry kind="lib" path="librariesWebDriverManagement4/webdrivermanager-4.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
