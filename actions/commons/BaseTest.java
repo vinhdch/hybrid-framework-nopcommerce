@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import exception.BrowserNotSupport;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -15,6 +16,7 @@ public class BaseTest {
 	private WebDriver driverBaseTest;
 
 	protected WebDriver getBrowserDriver(String browserName) {
+		// BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
 
 		System.out.println("Run on " + browserName);
 
@@ -49,10 +51,10 @@ public class BaseTest {
 			driverBaseTest = new EdgeDriver();
 
 		} else {
-			throw new RuntimeException("BrowserName invalid");
+			throw new BrowserNotSupport(browserName);
 		}
 
-		driverBaseTest.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 
 		driverBaseTest.manage().window().maximize();
 
