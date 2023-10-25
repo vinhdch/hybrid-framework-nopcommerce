@@ -62,4 +62,52 @@ public class BaseTest {
 
 		return driverBaseTest;
 	}
+
+	protected WebDriver getBrowserDriverDataTable(String browserName, String url) {
+
+		System.out.println("Run on " + browserName);
+
+		if (browserName.equals("firefox")) {
+
+			WebDriverManager.firefoxdriver().setup();
+			driverBaseTest = new FirefoxDriver();
+
+		} else if (browserName.equals("chrome")) {
+
+			WebDriverManager.chromedriver().setup();
+			driverBaseTest = new ChromeDriver();
+
+		} else if (browserName.equals("edge")) {
+
+			WebDriverManager.edgedriver().setup();
+			driverBaseTest = new EdgeDriver();
+
+		} else if (browserName.equals("headChrome")) {
+
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+
+			options.addArguments("--headless");
+			options.addArguments("window-size=1920x1080");
+
+			driverBaseTest = new ChromeDriver(options);
+
+		} else if (browserName.equals("edge")) {
+
+			WebDriverManager.edgedriver().setup();
+			driverBaseTest = new EdgeDriver();
+
+		} else {
+			throw new BrowserNotSupport(browserName);
+		}
+
+		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+
+		driverBaseTest.manage().window().maximize();
+
+		driverBaseTest.get(url);
+
+		return driverBaseTest;
+	}
+
 }

@@ -14,13 +14,13 @@ public class UserHomePageObject extends BasePage {
 	}
 
 	public UserRegisterPageObject clickToRegisterLink() {
-		waitForAllElementsClickable(driver, HomePageUI.REGISTER_LINK);
+		waitForElementsClickable(driver, HomePageUI.REGISTER_LINK);
 		clickToElement(driver, HomePageUI.REGISTER_LINK);
 		return new PageGeneraterManager().getUserRegisterPageObject(driver);
 	}
 
 	public UserLoginPageObject clickTologinLink() {
-		waitForAllElementsClickable(driver, HomePageUI.LOGIN_LINK);
+		waitForElementsClickable(driver, HomePageUI.LOGIN_LINK);
 		clickToElement(driver, HomePageUI.LOGIN_LINK);
 		return new PageGeneraterManager().getUserLoginPageObject(driver);
 
