@@ -385,6 +385,18 @@ public class BasePage {
 		}
 	}
 
+	protected boolean isImageLoaded(WebDriver driver, String locatorType, String... dynamicValues) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
+				getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
+		return status;
+		// if (status) {
+		// return true;
+		// } else {
+		// return false;
+		// }
+	}
+
 	protected void waitForElementVisible(WebDriver driver, String locatorType, String... dynamicValues) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
@@ -502,6 +514,19 @@ public class BasePage {
 	public void openPageAtMyAccountByPageName(WebDriver driver, String pageName) {
 		waitForAllElementsClickable(driver, BasePageUI.DYNAMIC_PAGE_AT_MY_ACCOUNT, pageName);
 		clickToElement(driver, BasePageUI.DYNAMIC_PAGE_AT_MY_ACCOUNT, pageName);
+	}
+
+	public void uploadMulipleFiles(WebDriver driver, String... fileNames) {
+
+		String filePath = GlobalConstants.UPLOAD_FILE;
+		String fullFileName = "";
+
+		for (String file : fileNames) {
+			fullFileName = fullFileName + filePath + file + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		getWebElement(driver, GlobalConstants.UPLOAD_FILE_JQUERY).sendKeys(fullFileName);
+
 	}
 
 	private long longTimeout = GlobalConstants.LONG_TIMEOUT;

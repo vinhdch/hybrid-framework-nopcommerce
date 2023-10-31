@@ -1,4 +1,4 @@
-package com.JQuery.DataTable;
+package com.JQuery;
 
 import java.util.List;
 
