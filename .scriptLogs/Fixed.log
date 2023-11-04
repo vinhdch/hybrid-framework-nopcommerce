@@ -1,0 +1,7 @@
+[04-11-2023 14:35:05.295 INFO com.JQuery.Level_13_Log_ReportNG] - Paging: step 1 - click page 8
+[04-11-2023 14:35:08.468 INFO com.JQuery.Level_13_Log_ReportNG] - Paging: step 2 - verify page 8 da duoc click
+[04-11-2023 14:35:08.577 INFO com.JQuery.Level_13_Log_ReportNG] - Paging: step 3 - click page 18
+[04-11-2023 14:35:11.661 INFO com.JQuery.Level_13_Log_ReportNG] - Paging: step 4 - verify page 18 da duoc click
+[04-11-2023 14:35:11.716 INFO com.JQuery.Level_13_Log_ReportNG] - Search: step 1 - refresh page
+[04-11-2023 14:35:12.730 INFO com.JQuery.Level_13_Log_ReportNG] - Search: step 2 - nhap country
+[04-11-2023 14:35:16.121 INFO com.JQuery.Level_13_Log_ReportNG] - Search: step 2 - nhap gioi tinh

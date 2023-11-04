@@ -13,10 +13,12 @@ public class GlobalConstants {
 	public static final String BROWSERLOG = PROJECT_PATH + File.separator + "browserLogs";
 	public static final String DRAG_DROP_HTML5 = PROJECT_PATH + File.separator + "dragDropHTML5";
 
-	public static final String DB_DEB_URL = "192.186.1.15:9870";
+	public static final String DB_DEV_URL = "192.186.1.15:9870";
 
-	public static final long SHORT_TIMEPUT = 5;
-	public static final long LONG_TIMEOUT = 10;
+	public static final long SHORT_TIMEOUT = 5;
+
+	// 30s la time vua du de wait element
+	public static final long LONG_TIMEOUT = 30;
 	public static final long RETRY_TEST_FAIL = 3;
 
 	public static final String UPLOAD_FILE_JQUERY = "xpath=//input[@type='file']";
