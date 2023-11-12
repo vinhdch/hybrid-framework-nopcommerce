@@ -30,7 +30,7 @@ public class Level_14_extendReport5 extends BaseTest {
 	private UserLoginPageObject loginPage;
 	private UserCustomerInforPageObject customerInforPage;
 
-	@Parameters({ "browser", "url" })
+	@Parameters("browser")
 	@BeforeClass
 	protected void beforeClass(String browserName) {
 		driverTestClass = getBrowserDriver(browserName);

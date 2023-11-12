@@ -1,5 +1,6 @@
 package commons;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeSuite;
 
 import exception.BrowserNotSupport;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -19,6 +22,11 @@ public class BaseTest {
 
 	public WebDriver getDriver() {
 		return driverBaseTest;
+	}
+
+	@BeforeSuite
+	public void initBeforeSuit() {
+		deleteAllureReport();
 	}
 
 	protected WebDriver getBrowserDriver(String browserName) {
@@ -152,4 +160,25 @@ public class BaseTest {
 		return pass;
 	}
 
+	public void onTestSuccess(ITestResult arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	public void deleteAllureReport() {
+		try {
+			String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";
+			File file = new File(pathFolderDownload);
+			File[] listOfFiles = file.listFiles();
+			if (listOfFiles.length != 0) {
+				for (int i = 0; i < listOfFiles.length; i++) {
+					if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
+						new File(listOfFiles[i].toString()).delete();
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+
+	}
 }
