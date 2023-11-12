@@ -12,7 +12,7 @@ import commons.BaseTest;
 import pageObject.IQuery.HomePageObject;
 import pageObject.IQuery.PageGeneraterManager;
 
-public class Level_13_log4j extends BaseTest {
+public class Level_13_log extends BaseTest {
 
 	private WebDriver driverTestClass;
 	HomePageObject homePage;

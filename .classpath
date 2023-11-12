@@ -35,13 +35,15 @@
 	<classpathentry kind="lib" path="libWebdriverManager_5.5.0/jackson-databind-2.10.3.jar"/>
 	<classpathentry kind="lib" path="libWebdriverManager_5.5.0/jna-5.12.1.jar"/>
 	<classpathentry kind="lib" path="libWebdriverManager_5.5.0/webdrivermanager-5.5.0.jar"/>
+	<classpathentry kind="lib" path="libWebdriverManager_5.5.0/slf4j-api-2.0.7.jar"/>
+	<classpathentry kind="lib" path="linExtendReport5/extentreports-5.0.8.jar"/>
+	<classpathentry kind="lib" path="linExtendReport5/freemarker-2.3.30.jar"/>
+	<classpathentry kind="lib" path="linExtendReport5/reactive-streams-1.0.3.jar"/>
+	<classpathentry kind="lib" path="linExtendReport5/rxjava-3.0.4.jar"/>
 	<classpathentry kind="lib" path="libReportNG/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="libReportNG/guice-3.0.jar"/>
 	<classpathentry kind="lib" path="libReportNG/reportng-1.1.4.jar"/>
 	<classpathentry kind="lib" path="libReportNG/reportng-1.1.4-sources.jar"/>
 	<classpathentry kind="lib" path="libReportNG/velocity-1.4.jar"/>
-	<classpathentry kind="lib" path="libLog4j2/log4j-api-2.19.0.jar"/>
-	<classpathentry kind="lib" path="libLog4j2/log4j-core-2.19.0.jar"/>
-	<classpathentry kind="lib" path="libWebdriverManager_5.5.0/slf4j-api-2.0.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
