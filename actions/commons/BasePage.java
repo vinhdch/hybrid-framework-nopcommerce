@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -58,6 +59,25 @@ public class BasePage {
 	public void refreshCurrentPage(WebDriver driver) {
 		driver.navigate().refresh();
 		;
+	}
+
+	public Set<Cookie> getAllCookies(WebDriver driver) {
+		return driver.manage().getCookies();
+	}
+
+	public String getElementValueByJS(WebDriver driver, String xpathLocator) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		xpathLocator = xpathLocator.replace("xpath=", "");
+		return (String) jsExecutor.executeScript("return $(document.evaluate(\"" + xpathLocator + "\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue).val()");
+
+	}
+
+	public void setCookies(WebDriver driver, Set<Cookie> cookies) {
+
+		for (Cookie cookie : cookies) {
+			driver.manage().addCookie(cookie);
+		}
+		sleepInSecond(GlobalConstants.SHORT_TIMEOUT);
 	}
 
 	protected Alert waitForAlertPresense(WebDriver driver) {
@@ -230,6 +250,10 @@ public class BasePage {
 
 	protected String getElementAttribute(WebDriver driver, String locatorType, String arrtibuteName) {
 		return getWebElement(driver, locatorType).getAttribute(arrtibuteName);
+	}
+
+	protected String getElementAttribute(WebDriver driver, String locatorType, String arrtibuteName, String... dynamicValues) {
+		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getAttribute(arrtibuteName);
 	}
 
 	protected String getCssValue(WebDriver driver, String locatorType, String propertyName) {
@@ -558,6 +582,31 @@ public class BasePage {
 		fullFileName = fullFileName.trim();
 		getWebElement(driver, GlobalConstants.UPLOAD_FILE_JQUERY).sendKeys(fullFileName);
 
+	}
+
+	// level 18 - pertern object
+	public void inputToTextboxById(WebDriver driver, String textboxId, String value) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxId);
+		sendkeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxId);
+
+	}
+
+	/**
+	 * Click to dynamic button text
+	 * 
+	 * @author            vinhdch
+	 * @param  driver
+	 * @param  buttonText
+	 */
+	// level 18 - pertern object
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		waitForElementsClickable(driver, BasePageUI.DYNCMIC_BUTTON_TEXT, buttonText);
+		clickToElement(driver, BasePageUI.DYNCMIC_BUTTON_TEXT, buttonText);
+	}
+
+	public String getTextboxValueById(WebDriver driver, String textboxId) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxId);
+		return getElementAttribute(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, "value", textboxId);
 	}
 
 	private long longTimeout = GlobalConstants.LONG_TIMEOUT;
