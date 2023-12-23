@@ -23,7 +23,7 @@ public class Level_9_DataTable extends BaseTest {
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	protected void beforeClass(String browserName, String url) {
-		driverTestClass = getBrowserDriverDataTable(browserName, url);
+		driverTestClass = getBrowserDriverUrl(browserName, url);
 		homePage = PageGeneraterManager.getHomePage(driverTestClass);
 
 	}

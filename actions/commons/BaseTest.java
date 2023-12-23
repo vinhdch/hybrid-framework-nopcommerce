@@ -2,6 +2,7 @@ package commons;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -34,12 +36,20 @@ public class BaseTest {
 		if (browserName.equals("firefox")) {
 
 			WebDriverManager.firefoxdriver().setup();
-			driverBaseTest = new FirefoxDriver();
+
+			FirefoxOptions options = new FirefoxOptions();
+			options.setAcceptInsecureCerts(false);
+
+			driverBaseTest = new FirefoxDriver(options);
 
 		} else if (browserName.equals("chrome")) {
 
 			WebDriverManager.chromedriver().setup();
-			driverBaseTest = new ChromeDriver();
+
+			ChromeOptions options = new ChromeOptions();
+			options.setAcceptInsecureCerts(true);
+
+			driverBaseTest = new ChromeDriver(options);
 
 		} else if (browserName.equals("edge")) {
 
@@ -70,7 +80,7 @@ public class BaseTest {
 		return driverBaseTest;
 	}
 
-	protected WebDriver getBrowserDriverDataTable(String browserName, String url) {
+	protected WebDriver getBrowserDriverUrl(String browserName, String url) {
 
 		System.out.println("Run on " + browserName);
 
@@ -82,7 +92,9 @@ public class BaseTest {
 		} else if (browserName.equals("chrome")) {
 
 			WebDriverManager.chromedriver().setup();
-			driverBaseTest = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.setAcceptInsecureCerts(true);
+			driverBaseTest = new ChromeDriver(options);
 
 		} else if (browserName.equals("edge")) {
 
@@ -225,5 +237,11 @@ public class BaseTest {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	protected int generateRandomNumber() {
+		Random rand = new Random();
+
+		return rand.nextInt(99999);
 	}
 }

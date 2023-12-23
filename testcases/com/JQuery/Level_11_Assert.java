@@ -26,7 +26,7 @@ public class Level_11_Assert extends BaseTest {
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	protected void beforeClass(String browserName, String url) {
-		driverTestClass = getBrowserDriverDataTable(browserName, url);
+		driverTestClass = getBrowserDriverUrl(browserName, url);
 		homePage = PageGeneraterManager.getHomePage(driverTestClass);
 
 	}

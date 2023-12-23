@@ -24,4 +24,8 @@ public class GlobalConstants {
 
 	public static final String UPLOAD_FILE_JQUERY = "xpath=//input[@type='file']";
 
+	// wordpress
+	public static final String WORDPRESS__ADMIN_PAGE_URL = "https://localhost/wp-admin/";
+	public static final String WORDPRESS__User_PAGE_URL = "127.0.0.1";
+
 }
