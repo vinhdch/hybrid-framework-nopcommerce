@@ -1,9 +1,9 @@
-package pageObjects.wordpress.admin;
+package pageObjects.wordpress;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUI.wordpress.admin.AdminPostAddNewPageUI;
+import pageUI.wordpress.AdminPostAddNewPageUI;
 
 public class AdminPostAddNewPO extends BasePage {
 	WebDriver driver;
@@ -23,6 +23,16 @@ public class AdminPostAddNewPO extends BasePage {
 		clickToElement(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_BUTTON);
 
 		waitForElementVisible(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX);
+		sendkeyToElement(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX, postBody);
+
+	}
+
+	public void enterToEditPostBody(String postBody) {
+		waitForElementsClickable(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX);
+		clickToElement(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX);
+
+		waitForElementVisible(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX);
+		clearValueInElementByDeleteKey(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX);
 		sendkeyToElement(driver, AdminPostAddNewPageUI.ADD_NEW_BODY_TEXTBOX, postBody);
 
 	}

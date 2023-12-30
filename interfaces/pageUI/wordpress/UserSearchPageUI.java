@@ -1,4 +1,4 @@
-package pageUI.wordpress.user;
+package pageUI.wordpress;
 
 public class UserSearchPageUI {
 

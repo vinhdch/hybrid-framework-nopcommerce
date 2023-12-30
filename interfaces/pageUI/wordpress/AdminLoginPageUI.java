@@ -1,4 +1,4 @@
-package pageUI.wordpress.admin;
+package pageUI.wordpress;
 
 public class AdminLoginPageUI {
 	public static final String USERNAME_TEXTBOX = "xpath=//INPUT[@id='user_login']";

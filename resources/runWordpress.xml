@@ -10,8 +10,8 @@
   
   </listeners>
   
-  <parameter name="urlAdmin" value="https://localhost/wp-admin/" />
-  <parameter name="urlUser" value="127.0.0.1" />
+  <parameter name="adminUrl" value="https://localhost/wp-admin/" />
+  <parameter name="endUserUrl" value="localhost" />
   
   <test name="Run on chrome">
   		<parameter name="browser" value="chrome" />

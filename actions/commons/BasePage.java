@@ -24,6 +24,8 @@ import pageObjects.nop.user.UserCustomerInforPageObject;
 import pageObjects.nop.user.UserHomePageObject;
 import pageObjects.nop.user.UserMyProductReviewPageObject;
 import pageObjects.nop.user.UserRewardPointPageObject;
+import pageObjects.wordpress.AdminDashboardPO;
+import pageObjects.wordpress.UserHomePO;
 import pageUIs.nop.user.BasePageUI;
 
 public class BasePage {
@@ -185,6 +187,11 @@ public class BasePage {
 		WebElement element = getWebElement(driver, locatorType);
 		element.clear();
 		element.sendKeys(textValue);
+	}
+
+	public void clearValueInElementByDeleteKey(WebDriver driver, String locatorType, String... dynamicValues) {
+		WebElement element = getWebElement(driver, locatorType);
+		element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 	}
 
 	protected void sendkeyToElement(WebDriver driver, String locatorType, String textValue, String... dynamicValues) {
@@ -564,6 +571,17 @@ public class BasePage {
 			throw new RuntimeException("Invalid PageName");
 
 		}
+	}
+
+	public UserHomePO openEndUserSite(WebDriver driver, String endUserUrl) {
+		openPageUrl(driver, endUserUrl);
+		return pageObjects.wordpress.PageGeneraterManager.getUserHomePage(driver);
+	}
+
+	public AdminDashboardPO openAdminSite(WebDriver driver, String adminUrl) {
+		openPageUrl(driver, adminUrl);
+		return pageObjects.wordpress.PageGeneraterManager.getAdminDashboardPage(driver);
+
 	}
 
 	public void openPageAtMyAccountByPageName(WebDriver driver, String pageName) {

@@ -1,9 +1,9 @@
-package pageObjects.wordpress.admin;
+package pageObjects.wordpress;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUI.wordpress.admin.AdminLoginPageUI;
+import pageUI.wordpress.AdminLoginPageUI;
 
 public class AdminLoginPO extends BasePage {
 	WebDriver driver;

@@ -18,8 +18,8 @@ public class GlobalConstants {
 
 	public static final long SHORT_TIMEOUT = 5;
 
-	// 30s la time vua du de wait element
-	public static final long LONG_TIMEOUT = 30;
+	// 30s la time vua du de wait element = STANDARD
+	public static final long LONG_TIMEOUT = 5;
 	public static final long RETRY_TEST_FAIL = 3;
 
 	public static final String UPLOAD_FILE_JQUERY = "xpath=//input[@type='file']";
