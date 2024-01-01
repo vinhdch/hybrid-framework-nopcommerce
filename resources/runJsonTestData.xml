@@ -17,8 +17,7 @@
   
   		<parameter name="browser" value="chrome" />
 	    <classes>
-	      <class name="com.nopcommerce.user.Level_19_data_faker"/>
-	      <!--<class name="com.nopcommerce.user.Level_18_pattern_object"/>-->
+	      <class name="com.nopcommerce.user.Level_20_TestData_External_File"/>
 	    </classes>
     
   </test>

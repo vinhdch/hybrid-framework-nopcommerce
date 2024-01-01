@@ -1,5 +1,5 @@
 package com.nopcommerce.data;
 
-class productData {
+class ProductData {
 
 }

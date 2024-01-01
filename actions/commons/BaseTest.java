@@ -2,6 +2,8 @@ package commons;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -33,7 +36,7 @@ public class BaseTest {
 	}
 
 	protected WebDriver getBrowserDriver(String browserName) {
-		System.out.println("Run on " + browserName);
+		// System.out.println("Run on " + browserName);
 		if (browserName.equals("firefox")) {
 
 			WebDriverManager.firefoxdriver().setup();
@@ -46,6 +49,10 @@ public class BaseTest {
 		} else if (browserName.equals("chrome")) {
 
 			WebDriverManager.chromedriver().setup();
+
+			// disable consolve log
+			System.setProperty("webdriver.chrome.args", "--disable-logging");
+			System.setProperty("webdriver,chrome.slientOutput", "true");
 
 			ChromeOptions options = new ChromeOptions();
 			options.setAcceptInsecureCerts(true);
@@ -67,10 +74,15 @@ public class BaseTest {
 
 			driverBaseTest = new ChromeDriver(options);
 
-		} else if (browserName.equals("edge")) {
+		} else if (browserName.equals("headFirefox")) {
 
-			WebDriverManager.edgedriver().setup();
-			driverBaseTest = new EdgeDriver();
+			WebDriverManager.firefoxdriver().setup();
+
+			FirefoxOptions options = new FirefoxOptions();
+			options.addArguments("--headless");
+			options.addArguments("window-size=1920x1080");
+
+			driverBaseTest = new FirefoxDriver(options);
 
 		} else {
 			throw new BrowserNotSupport(browserName);
@@ -88,13 +100,55 @@ public class BaseTest {
 		if (browserName.equals("firefox")) {
 
 			WebDriverManager.firefoxdriver().setup();
-			driverBaseTest = new FirefoxDriver();
+
+			// disable browser log
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, GlobalConstants.PROJECT_PATH + "\\browserLogs\\FirefoxLogs.log");
+
+			// add extension to firefox
+			FirefoxProfile profile = new FirefoxProfile();
+			File translateFile = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\to_google_translate-4.2.0.xpi");
+			profile.addExtension(translateFile);
+
+			// ignore SSL crtificate (unstrust page)
+			// profile.setAcceptUntrustedCertificates(true);
+			// profile.setAssumeUntrustedCertificateIssuer(false);
+
+			FirefoxOptions options = new FirefoxOptions();
+			options.setProfile(profile);
+			driverBaseTest = new FirefoxDriver(options);
 
 		} else if (browserName.equals("chrome")) {
 
 			WebDriverManager.chromedriver().setup();
+
+			// // disable consolve log
+			// System.setProperty("webdriver.chrome.args", "--disable-logging");
+			// System.setProperty("webdriver,chrome.slientOutput", "true");
+
+			// add extension to chrome
+			File file = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\google_translate.crx");
+
 			ChromeOptions options = new ChromeOptions();
+
+			// skip secure option
 			options.setAcceptInsecureCerts(true);
+
+			// config language of browser
+			options.addArguments("--lang=vi");
+			// config noti of browser
+			options.addArguments("--disable-notifications");
+			// config turn off auto line during running
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+			// choose folder to save downloaded files
+			HashMap<String, Object> prefs = new HashMap<String, Object>();
+			prefs.put("profile.default_content_settings,popups", 0);
+			prefs.put("download.default_directory", GlobalConstants.PROJECT_PATH + "\\downloadFiles");
+			options.setExperimentalOption("prefs", prefs);
+
+			options.addExtensions(file);
+
 			driverBaseTest = new ChromeDriver(options);
 
 		} else if (browserName.equals("edge")) {
@@ -107,15 +161,21 @@ public class BaseTest {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 
-			options.addArguments("--headless");
-			options.addArguments("window-size=1920x1080");
+			// options.addArguments("--headless");
+			// options.addArguments("window-size=1920x1080");
+			options.setHeadless(true);
 
 			driverBaseTest = new ChromeDriver(options);
 
-		} else if (browserName.equals("edge")) {
+		} else if (browserName.equals("headFirefox")) {
 
-			WebDriverManager.edgedriver().setup();
-			driverBaseTest = new EdgeDriver();
+			WebDriverManager.firefoxdriver().setup();
+
+			FirefoxOptions options = new FirefoxOptions();
+			options.addArguments("--headless");
+			options.addArguments("window-size=1920x1080");
+
+			driverBaseTest = new FirefoxDriver(options);
 
 		} else {
 			throw new BrowserNotSupport(browserName);

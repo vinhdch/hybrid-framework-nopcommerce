@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Nop">
-<!--<suite name="Wordpress" parallel="classes">-->
+<suite name="Wordpress">
+
   
   <listeners>
   <listener class-name="commons.MethodListener"> </listener>
@@ -11,15 +11,14 @@
   
   </listeners>
   
- 	<parameter name="browser" value="chrome" />
+  <parameter name="appUrl" value="https://www.saucedemo.com/" />
   
-    <test name="Run on chrome">
-  
+  <test name="Run on chrome">
   		<parameter name="browser" value="chrome" />
-	    <classes>
-	      <class name="com.nopcommerce.user.Level_19_data_faker"/>
-	      <!--<class name="com.nopcommerce.user.Level_18_pattern_object"/>-->
-	    </classes>
+    
+	    <packages>
+	      <package name="com.swagLabs"/>
+	    </packages>
     
   </test>
   
