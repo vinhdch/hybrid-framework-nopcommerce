@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -19,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import pageObjects.nop.user.UserHomePageObject;
 import pageObjects.nop.user.UserRegisterPageObject;
 
-public class Level_20_TestData_External_File extends BaseTest {
+public class Level_22_Grid extends BaseTest {
 
 	private WebDriver driverTestClass;
 
@@ -28,10 +29,12 @@ public class Level_20_TestData_External_File extends BaseTest {
 	private UserRegisterPageObject registerPage;
 	UserDataMapper userDataMapper;
 
-	@Parameters("browser")
+	@Parameters({ "envName", "url", "browserName", "osName", "osVersion", "ipAddress", "port" })
 	@BeforeClass
-	protected void beforeClass(String browserName) {
-		driverTestClass = getBrowserDriver(browserName);
+	protected void beforeClass(@Optional("grid") String envName, @Optional("dev") String url, @Optional("chrome") String browserName, @Optional("Windows") String osName, @Optional("10") String osVersion,
+			@Optional("localhost") String ipAddress, @Optional("4444") String port) {
+
+		driverTestClass = getBrowserDriver(envName, url, browserName, osName, osVersion, ipAddress, port);
 
 		homePage = PageGeneraterManager.getUserHomePageObject(driverTestClass);
 

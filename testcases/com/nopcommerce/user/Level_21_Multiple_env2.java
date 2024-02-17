@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import pageObjects.nop.user.UserHomePageObject;
 import pageObjects.nop.user.UserRegisterPageObject;
 
-public class Level_20_TestData_External_File extends BaseTest {
+public class Level_21_Multiple_env2 extends BaseTest {
 
 	private WebDriver driverTestClass;
 
@@ -28,10 +28,11 @@ public class Level_20_TestData_External_File extends BaseTest {
 	private UserRegisterPageObject registerPage;
 	UserDataMapper userDataMapper;
 
-	@Parameters("browser")
+	@Parameters({ "browser", "environment" })
 	@BeforeClass
-	protected void beforeClass(String browserName) {
-		driverTestClass = getBrowserDriver(browserName);
+	protected void beforeClass(String browserName, String environment) {
+
+		driverTestClass = getBrowserEnvironmentUrl(browserName, environment);
 
 		homePage = PageGeneraterManager.getUserHomePageObject(driverTestClass);
 

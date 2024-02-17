@@ -2,6 +2,7 @@ package com.nopcommerce.user;
 
 import java.util.Random;
 
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -18,8 +19,9 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import pageObjects.nop.user.UserHomePageObject;
 import pageObjects.nop.user.UserRegisterPageObject;
+import utitlities.Environment;
 
-public class Level_20_TestData_External_File extends BaseTest {
+public class Level_21_Multiple_env extends BaseTest {
 
 	private WebDriver driverTestClass;
 
@@ -28,10 +30,17 @@ public class Level_20_TestData_External_File extends BaseTest {
 	private UserRegisterPageObject registerPage;
 	UserDataMapper userDataMapper;
 
-	@Parameters("browser")
+	Environment environment;
+
+	@Parameters({ "browser" })
 	@BeforeClass
-	protected void beforeClass(String browserName) {
-		driverTestClass = getBrowserDriver(browserName);
+	protected void beforeClass(String browserName, String envName) {
+		// mapping dynamic param at property file
+		ConfigFactory.setProperty("env", envName);
+
+		environment = ConfigFactory.create(Environment.class);
+
+		driverTestClass = getBrowserDriverUrl(browserName, environment.appUrl());
 
 		homePage = PageGeneraterManager.getUserHomePageObject(driverTestClass);
 

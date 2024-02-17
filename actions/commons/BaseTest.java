@@ -20,6 +20,12 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 import exception.BrowserNotSupport;
+import fractoryEnvironment.BrowserstackFactory;
+import fractoryEnvironment.EnvironmentList;
+import fractoryEnvironment.GridFactory;
+import fractoryEnvironment.LambdaFactory;
+import fractoryEnvironment.LocalFactory;
+import fractoryEnvironment.SaucelabFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -35,8 +41,39 @@ public class BaseTest {
 		deleteAllureReport();
 	}
 
+	protected WebDriver getBrowserDriver(String envName, String url, String browserName, String osName, String osVersion, String ipAddress, String port) {
+
+		switch (envName) {
+		case "browserstack":
+			driverBaseTest = new BrowserstackFactory(browserName, osName, osVersion).createDriver();
+			break;
+		case "saucelab":
+			driverBaseTest = new SaucelabFactory(browserName, osName).createDriver();
+			break;
+		case "lambda":
+			driverBaseTest = new LambdaFactory(browserName, osName).createDriver();
+			break;
+		case "grid":
+			driverBaseTest = new GridFactory(browserName, ipAddress, osName, port).createDriver();
+			break;
+		default:
+			driverBaseTest = new LocalFactory(browserName).createDriver();
+			break;
+		}
+
+		System.out.println("Run on " + browserName);
+
+		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+
+		driverBaseTest.manage().window().maximize();
+
+		driverBaseTest.get(getEnvironment(url));
+
+		return driverBaseTest;
+	}
+
 	protected WebDriver getBrowserDriver(String browserName) {
-		// System.out.println("Run on " + browserName);
+
 		if (browserName.equals("firefox")) {
 
 			WebDriverManager.firefoxdriver().setup();
@@ -94,8 +131,6 @@ public class BaseTest {
 	}
 
 	protected WebDriver getBrowserDriverUrl(String browserName, String url) {
-
-		System.out.println("Run on " + browserName);
 
 		if (browserName.equals("firefox")) {
 
@@ -180,6 +215,7 @@ public class BaseTest {
 		} else {
 			throw new BrowserNotSupport(browserName);
 		}
+		System.out.println("Run on " + browserName);
 
 		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 
@@ -188,6 +224,71 @@ public class BaseTest {
 		driverBaseTest.get(url);
 
 		return driverBaseTest;
+
+	}
+
+	protected WebDriver getBrowserEnvironmentUrl(String browserName, String environmentName) {
+
+		System.out.println("Run on " + browserName);
+
+		if (browserName.equals("chrome")) {
+
+			WebDriverManager.chromedriver().setup();
+
+			// add extension to chrome
+			File file = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\google_translate.crx");
+
+			ChromeOptions options = new ChromeOptions();
+
+			// skip secure option
+			options.setAcceptInsecureCerts(true);
+
+			// config language of browser
+			options.addArguments("--lang=vi");
+			// config noti of browser
+			options.addArguments("--disable-notifications");
+			// config turn off auto line during running
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+			// choose folder to save downloaded files
+			HashMap<String, Object> prefs = new HashMap<String, Object>();
+			prefs.put("profile.default_content_settings,popups", 0);
+			prefs.put("download.default_directory", GlobalConstants.PROJECT_PATH + "\\downloadFiles");
+			options.setExperimentalOption("prefs", prefs);
+
+			options.addExtensions(file);
+
+			driverBaseTest = new ChromeDriver(options);
+
+		} else {
+			throw new BrowserNotSupport(browserName);
+		}
+
+		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+
+		driverBaseTest.manage().window().maximize();
+
+		driverBaseTest.get(getEnvironment(environmentName));
+
+		return driverBaseTest;
+	}
+
+	protected String getEnvironment(String severName) {
+
+		String envUrl = null;
+		EnvironmentList environment = EnvironmentList.valueOf(severName.toUpperCase());
+
+		switch (environment) {
+		case DEV:
+			envUrl = "https://demo.nopcommerce.com/";
+			break;
+		case TESTING:
+			envUrl = "https://demo.nopcommerce.com/";
+		default:
+			envUrl = null;
+			break;
+		}
+		return envUrl;
 	}
 
 	protected boolean verifyTrue(boolean condition) {

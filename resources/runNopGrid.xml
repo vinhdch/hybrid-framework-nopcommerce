@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Nop" parallel = "tests" thread-count="2">
+
+  
+  <listeners>
+  <listener class-name="commons.MethodListener"> </listener>
+  	<listener class-name="reportConfig.AllureTestListener"/>
+    <!--<listener class-name="org.uncommons.reportng.HTMLReporter"/> -->
+    <!--<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/> -->
+  
+  </listeners>
+  
+  <test name="Run on chrome">
+  		<parameter name="envName" value="grid" />
+  		<parameter name="url" value="dev" />
+  		<parameter name="browserName" value="chrome" />
+  		<parameter name="osName" value="Windows" />
+  		<parameter name="ipAddress" value="localhost" />
+  		<parameter name="port" value="4444" />
+    
+	    <classes>
+	      <class name="com.nopcommerce.user.Level_22_Grid"/>
+	    </classes>
+  </test>
+  
+  <test name="Run on firefox">
+  		<parameter name="envName" value="grid" />
+  		<parameter name="url" value="dev" />
+  		<parameter name="browserName" value="firefox" />
+  		<parameter name="osName" value="Windows" />
+  		<parameter name="ipAddress" value="localhost" />
+  		<parameter name="port" value="4444" />
+    
+	    <classes>
+	      <class name="com.nopcommerce.user.Level_22_Grid"/>
+	    </classes>
+  </test>
+  
+</suite> 
+ 

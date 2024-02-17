@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Nop">
-<!--<suite name="Wordpress" parallel="classes">-->
+
   
   <listeners>
   <listener class-name="commons.MethodListener"> </listener>
@@ -11,11 +11,15 @@
   
   </listeners>
   
-    <test name="Run on chrome">
-  
-  		<parameter name="browser" value="chrome" />
+  <test name="Run on chrome">
+  		<parameter name="envName" value="browserstack" />
+  		<parameter name="url" value="DEV" />
+  		<parameter name="browserName" value="chrome" />
+  		<parameter name="osName" value="Windows" />
+  		<parameter name="osVersion" value="10" />
+    
 	    <classes>
-	      <class name="com.nopcommerce.user.Level_20_TestData_External_File"/>
+	      <class name="com.nopcommerce.user.Level_22_BrowserStack"/>
 	    </classes>
     
   </test>

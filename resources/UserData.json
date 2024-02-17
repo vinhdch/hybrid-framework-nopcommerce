@@ -1,9 +1,11 @@
 {
 "firstName": "automation",
 "lastName": "FC",
-"emailAddress": "vinhdch",
+"emailAddress": "testing",
 "password": "vinh123",
 "login": {
 	"username": "vinhdch34",
-	"password" : "123456"
+	"password": "123456"
+	},
+"country": "USA"
 }
